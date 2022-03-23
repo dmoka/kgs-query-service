@@ -1,3 +1,4 @@
+use fluent_asserter::prelude::*;
 use std::net::TcpListener;
 
 #[tokio::test]
@@ -15,8 +16,8 @@ async fn health_check_works() {
         .expect("Failed to execute request.");
 
     // Assert
-    assert!(response.status().is_success());
-    assert_eq!(Some(0), response.content_length());
+    assert_that!(response.status().is_success()).is_true();
+    assert_that!(response.content_length()).is_some_with_value(0);
 }
 
 fn spawn_app() -> String {
