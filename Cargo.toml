@@ -15,6 +15,9 @@ name = "kgs-query-service"
 actix-web = "=4.0.0"
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 serde = { version = "1", features = ["derive"]}
+config = { version = "0.11", default-features = false, features = ["yaml"] }
+uuid = { version = "0.8.1", features = ["v4", "serde"] }
+bigdecimal = { version = "0.2", features = ["serde"] }
 
 [dependencies.sqlx]
 version = "0.5.7"
@@ -25,9 +28,11 @@ features = [
     "postgres",
     "uuid",
     "chrono",
-    "migrate"
+    "migrate",
+    "bigdecimal"
 ]
 
 [dev-dependencies]
+serde_json = { version = "1.0.79", features = ["preserve_order"] }
 reqwest = "0.11"
 fluent-asserter = "0.1.6"
